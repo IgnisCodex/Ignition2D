@@ -14,9 +14,15 @@ project "Sandbox"
 	}
 
 	includedirs {
-		"%{wks.location}/projects/Ignition/src"
+		"%{wks.location}/projects/Ignition/src",
+
+		"%{libs.SPDLOG}"
 	}
 
+	links {
+		"GLFW"
+	}
+	
 	links {
 		"Ignition"
 	}
@@ -25,23 +31,44 @@ project "Sandbox"
 		systemversion "latest"
 
 		defines {
-			"IGN_SYS_WINDOWS",
+			"IG_SYS_WINDOWS",
 		}
 
 	filter "system:macosx"
+	
+		libdirs {
+			"%{wks.location}/build/bin/Debug-macosx-ARM64/GLFW"
+		}
+
 		defines {
-			"IGN_SYS_MACOS",
+			"IG_SYS_MACOS",
+		}
+
+		linkoptions {
+			"-framework Cocoa",
+			"-framework OpenGL",
+			"-framework IOKit",
+			"-framework CoreVideo",
+			"-framework CoreFoundation",
+			"-framework Metal",
+			"-framework MetalKit",
+			"-framework QuartzCore",
+			"-framework AppKit",
+			"-framework Foundation",
+			"-framework CoreGraphics",
+			"-framework CoreAudio",
+			"-framework CoreServices"
 		}
 
 	filter "system:linux"
 		defines {
-			"IGN_SYS_LINUX",
+			"IG_SYS_LINUX",
 		}
 
 	filter "configurations:Debug"
-		defines "IGN_DEBUG"
+		defines "IG_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "IGN_RELEASE"
+		defines "IG_RELEASE"
 		optimize "On"

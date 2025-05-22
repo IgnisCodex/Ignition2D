@@ -1,12 +1,12 @@
 #pragma once
 
-#ifdef IGN_SYS_MACOS
-extern Ignition::Core::Application* Ignition::Core::CreateApplication();
+#ifdef IG_SYS_MACOS
+extern Ignition::Engine::Core::Application* Ignition::Engine::Core::CreateApplication();
 
 int main(int argc, char** argv) {
-    // Ignition::Log::Init();
+    Ignition::Engine::Log::Init();
 
-    auto app = Ignition::Core::CreateApplication();
+    auto app = Ignition::Engine::Core::CreateApplication();
     app->Run();
 
     delete app;

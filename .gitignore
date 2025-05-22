@@ -1,4 +1,13 @@
-Makefile
+# Dirs
 build/
-.vscode/
 .vs/
+.vscode/
+
+# Visual Studio Files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Makefiles
+Makefile

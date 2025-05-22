@@ -8,8 +8,8 @@ project "Ignition"
 	targetdir ("%{wks.location}/build/bin/" .. OUTPUT_DIR .. "/%{prj.name}")
 	objdir ("%{wks.location}/build/int/" .. OUTPUT_DIR .. "/%{prj.name}")
 
-	pchheader "src/IGNPCH.hpp"
-	pchsource "src/IGNPCH.cpp"
+	pchheader "src/IGPCH.hpp"
+	pchsource "src/IGPCH.cpp"
 
 	files {
 		"src/**.h",
@@ -17,37 +17,43 @@ project "Ignition"
 	}
 
 	includedirs {
-		"src"
+		"src",
+		"%{libs.GLFW}",
+		"%{libs.SPDLOG}"
+	}
+
+	defines {
+		"GLFW_INCLUDE_NONE"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
 
 		defines {
-			"IGN_SYS_WINDOWS",
+			"IG_SYS_WINDOWS"
 		}
 
 	filter "system:macosx"
 		defines {
-			"IGN_SYS_MACOS",
+			"IG_SYS_MACOS"
 		}
 
 	filter "system:linux"
 		defines {
-			"IGN_SYS_LINUX",
+			"IG_SYS_LINUX"
 		}
 
 	filter "configurations:Debug"
-		defines "IGN_DEBUG"
+		defines "IG_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "IGN_RELEASE"
+		defines "IG_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "IGN_DIST"
+		defines "IG_DIST"
 		runtime "Release"
 		optimize "on"

@@ -1,7 +1,7 @@
-#define IGN_APPLICATION
+#define IG_APPLICATION
 #include <Ignition.hpp>
 
-class Sandbox : public Ignition::Core::Application {
+class Sandbox : public Ignition::Engine::Core::Application {
 public:
 	Sandbox() {
 
@@ -12,6 +12,6 @@ public:
 	}
 };
 
-Ignition::Core::Application* Ignition::Core::CreateApplication() {
+Ignition::Engine::Core::Application* Ignition::Engine::Core::CreateApplication() {
 	return new Sandbox();
 }

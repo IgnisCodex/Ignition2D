@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include "Engine/Core/Window.hpp"
 
-namespace Ignition::Core {
+namespace Ignition::Engine::Core {
 	class Application {
 	public:
 		Application(const std::string& name = "Ignition");
@@ -16,6 +17,8 @@ namespace Ignition::Core {
 	private:
 		bool mIsRunning = true;
 		bool mIsMinimized = false;
+
+		IGScope<Window>	mWindow;
 
 	private:
 		static Application* sInstance;
