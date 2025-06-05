@@ -9,5 +9,8 @@ build/
 *.vcxproj.filters
 *.vcxproj.user
 
+# Shader Builds
+*.spv
+
 # Makefiles
 Makefile

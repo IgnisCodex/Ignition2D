@@ -16,7 +16,8 @@ project "Sandbox"
 	includedirs {
 		"%{wks.location}/projects/Ignition/src",
 
-		"%{libs.SPDLOG}"
+		"%{inc.SPDLOG}",
+		"%{inc.GLM}"
 	}
 
 	links {
@@ -30,8 +31,16 @@ project "Sandbox"
 	filter "system:windows"
 		systemversion "latest"
 
+		postbuildcommands {
+			"call %{wks.location}tools/windows/postcopy_all_shaders.bat %{prj.location} %{cfg.buildtarget.directory}"
+		}
+
 		defines {
 			"IG_SYS_WINDOWS",
+		}
+
+		buildoptions {
+			"/utf-8"
 		}
 
 	filter "system:macosx"

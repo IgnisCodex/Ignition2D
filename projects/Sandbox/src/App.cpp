@@ -1,9 +1,11 @@
 #define IG_APPLICATION
+#define IG_USE_ALIASES
 #include <Ignition.hpp>
 
-class Sandbox : public Ignition::Engine::Core::Application {
+class Sandbox : public IGECore::Application {
 public:
 	Sandbox() {
+		IGPVulkan::VulkanPipeline vkpipe = IGPVulkan::VulkanPipeline("assets/shaders/simple.vert.spv", "assets/shaders/simple.frag.spv");
 
 	}
 
@@ -12,6 +14,6 @@ public:
 	}
 };
 
-Ignition::Engine::Core::Application* Ignition::Engine::Core::CreateApplication() {
+IGECore::Application* IGECore::CreateApplication() {
 	return new Sandbox();
 }

@@ -8,22 +8,31 @@ project "Ignition"
 	targetdir ("%{wks.location}/build/bin/" .. OUTPUT_DIR .. "/%{prj.name}")
 	objdir ("%{wks.location}/build/int/" .. OUTPUT_DIR .. "/%{prj.name}")
 
-	pchheader "src/IGPCH.hpp"
+	pchheader "IGPCH.hpp"
 	pchsource "src/IGPCH.cpp"
 
 	files {
 		"src/**.h",
-		"src/**.cpp"
+		"src/**.cpp",
+
+		-- "%{inc.GLM}/glm/**.hpp",
+		-- "%{inc.GLM}/glm/**.inl",
 	}
 
 	includedirs {
 		"src",
-		"%{libs.GLFW}",
-		"%{libs.SPDLOG}"
+		"%{inc.GLFW}",
+		"%{inc.SPDLOG}",
+		"%{inc.VULKAN}",
+		"%{inc.GLM}"
+	}
+
+	libdirs {
+		"%{lib.VULKAN}"
 	}
 
 	defines {
-		"GLFW_INCLUDE_NONE"
+		"GLFW_INCLUDE_VULKAN"
 	}
 
 	filter "system:windows"
@@ -31,6 +40,14 @@ project "Ignition"
 
 		defines {
 			"IG_SYS_WINDOWS"
+		}
+
+		buildoptions {
+			"/utf-8"
+		}
+
+		links {
+			"vulkan-1"
 		}
 
 	filter "system:macosx"
